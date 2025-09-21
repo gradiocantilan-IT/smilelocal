@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VP Sara Duterte Portal</title>
+<style>
+  /* Reset */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: url('images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+  }
+
+  /* Dark overlay on background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6); /* slightly darker */
+    z-index: -1;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 20;
+  }
+
+  .logo {
+    font-size: 1.2em;
+  }
+
+  .menu-icon {
+    width: 25px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 18px;
+  }
+
+  .menu-icon div {
+    height: 3px;
+    background: white;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 19;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-bottom: 1px solid #555;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  /* Video container (mobile only) - fixed at top */
+  .video-container {
+    display: none;
+    position: fixed;
+    top: 50px; /* below header */
+    left: 0;
+    width: 100%;
+    z-index: 15;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .video-container video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+
+  /* Content sections scroll behind video */
+  .content {
+    margin-top: 250px; /* enough margin so video doesn't cover content */
+    padding: 15px;
+  }
+
+  .section {
+    margin-bottom: 30px;
+    background: rgba(0,0,0,0.65);
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .section h2 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+  }
+
+  .program {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  /* Overlay inside each program for readability */
+  .program::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 0;
+  }
+
+  .program h3, .program p, .program a {
+    position: relative;
+    z-index: 1;
+  }
+
+  .program a {
+    color: #ff0;
+    text-decoration: none;
+  }
+
+  /* Mobile only */
+  @media (max-width: 768px) {
+    .video-container {
+      display: block;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Home</div>
+  <div class="menu-icon" id="menuIcon">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header>
+
+<nav id="navMenu">
+  <a href="#programs">Programs</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="video-container">
+  <video controls poster="images/poster.jpg">
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+</div>
+
+<div class="content">
+  <section id="programs" class="section">
+    <h2>Flagship Programs</h2>
+
+    <div class="program" style="background-image: url('images/mag-negosyo-bg.jpg');">
+      <h3>Mag-Negosyo Ta ‘Day!</h3>
+      <p>Empowering women entrepreneurs through livelihood training and financial support.</p>
+      <a href="https://financialassistance.ph/ovp-mtd-mag-negosyo-ta-day-program/">Learn More</a>
+    </div>
+
+    <div class="program" style="background-image: url('images/peace-bg.jpg');">
+      <h3>Peace 911</h3>
+      <p>A peace and development initiative ensuring lasting peace in conflict areas.</p>
+      <a href="https://peace.gov.ph/2023/09/vp-sara-good-governance-key-to-ending-communist-insurgency/">Learn More</a>
+    </div>
+
+    <div class="program" style="background-image: url('images/education-bg.jpg');">
+      <h3>Education Support</h3>
+      <p>Scholarships and learning assistance programs for underprivileged students nationwide.</p>
+      <a href="https://pressone.ph/2-out-of-3-school-buildings-require-repairs-deped/">Learn More</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About VP Sara Duterte</h2>
+    <p>Vice President Sara Duterte is committed to advancing education, livelihood, and peace-building programs that uplift Filipino communities nationwide.</p>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: office@saraduterte.ph</p>
+    <p>Phone: +63 912 345 6789</p>
+  </section>
+</div>
+
+<script>
+  const menuIcon = document.getElementById('menuIcon');
+  const navMenu = document.getElementById('navMenu');
+
+  menuIcon.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>

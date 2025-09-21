@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Inday Sara Duterte</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="swiper-bundle.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* 🔹 Header & Nav */
+    header {
+      background-color: #d81b60;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* 🔹 Mobile Nav */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        border-left: 2px solid #d81b60;
+      }
+      nav a {
+        padding: 1rem;
+        border-bottom: 1px solid #333;
+      }
+      nav.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #111;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .content {
+      padding: 1rem;
+      flex: 1;
+    }
+    .content h2 {
+      color: #d81b60;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .content p {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #ddd;
+    }
+    .support-btn {
+      display: inline-block;
+      background-color: #d81b60;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* 🔹 Swiper Slider */
+    .swiper {
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Header with Nav -->
+  <header>
+    <h1>Support Inday Sara</h1>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <nav id="navMenu">
+      <a href="../../index.html">Home</a>
+      <a href="#contact">Contact</a>
+      <a href="gradiocantilan@gmail.com">Email</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <img src="assets/saralogo.png" alt="Sara Duterte">
+    <h2>We Stand with Inday Sara!</h2>
+  </section>
+
+  <section class="content">
+    <h2>Why We Support Sara Duterte</h2>
+    <p>
+      Vice President Sara Duterte, fondly known as Inday Sara, has been a dedicated public servant, championing education, women's empowerment, and community development. Her leadership as the former mayor of Davao City and her initiatives like the "Mag Negosyo Ta 'Day" program showcase her commitment to uplifting marginalized sectors and fostering a business-friendly environment for all Filipinos.
+    </p>
+    <p>
+      With a strong track record in public service and a vision for a united Philippines, Sara continues to inspire millions. Join us in supporting her journey to make a positive impact for our nation!
+    </p>
+    <a href="#join" class="support-btn">Join the Movement</a>
+
+    <h2>Her Achievements</h2>
+    <ul>
+      <li>First female and youngest mayor of Davao City</li>
+      <li>Launched "PagbaBAGo: A Million Learners and Trees" for education and environmental care</li>
+      <li>Advocated for peace and order through initiatives like Peace 911</li>
+    </ul>
+  </section>
+
+  <!-- 📸 Auto Image Gallery -->
+  <section class="content">
+    <h2>Photo Gallery</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper" id="gallery"></div>
+      <!-- Navigation & Pagination -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- 📩 Contact Section -->
+  <section class="content" id="contact">
+    <h2>Contact Us</h2>
+    <p>For inquiries, partnerships, or support, reach us via email:</p>
+    <p><a href="mailto:support@sara2025.com" class="support-btn">📩 support@sara2025.com</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Support Inday Sara. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="swiper-bundle.min.js"></script>
+  <script>
+    // 📂 Image folder path
+    const imgFolder = "assets/sara/";
+    const imgCount = 6; // 🔢 adjust to your total images
+    const gallery = document.getElementById("gallery");
+
+    // Auto-generate slides
+    for (let i = 1; i <= imgCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide";
+      slide.innerHTML = `<img src="${imgFolder}${i}.jpg" alt="Sara Duterte ${i}">`;
+      gallery.appendChild(slide);
+    }
+
+    // Init Swiper
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    // Toggle mobile menu
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
