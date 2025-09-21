@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Mobile Offline Movie — Simple Player</title>
+  <style>
+    :root{--bg:#000;--fg:#fff;--accent:#e5e7eb}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;font-family:sans-serif}
+    .desktop-block{display:none}
+    @media (min-width:700px){
+      .app{display:none}
+      .desktop-block{display:flex;align-items:center;justify-content:center;height:100vh;color:var(--fg);padding:20px}
+      .desktop-block .box{max-width:700px;background:#050505;border-radius:12px;padding:24px;text-align:center}
+    }
+
+    .app{display:flex;flex-direction:column;min-height:100vh}
+    header{display:flex;align-items:center;justify-content:center;padding:10px 12px;background:rgba(20,20,20,.6);backdrop-filter:blur(6px)}
+    .brand{font-weight:600;font-size:1rem}
+
+    main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:8px;overflow-y:auto}
+    .player-wrap{width:100%;max-width:720px;position:relative}
+    video{width:100%;max-height:50vh;border-radius:10px;background:#000;outline:none}
+    .controls{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px;margin-top:8px;width:100%;max-width:720px}
+
+    .title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .small{font-size:12px;color:rgba(255,255,255,0.7)}
+
+    /* Horizontal movie list slider */
+    .movie-list{display:flex;gap:12px;overflow-x:auto;padding:12px 8px;scroll-snap-type:x mandatory;width:100%;max-width:720px}
+    .movie-item{flex:0 0 auto;width:120px;scroll-snap-align:start;cursor:pointer;text-align:center}
+    .movie-item img{width:100%;height:160px;object-fit:cover;border-radius:10px;background:#111}
+    .movie-item span{display:block;margin-top:6px;font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+    /* Icon grid links */
+    .icon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:16px;padding:16px;width:100%;max-width:720px}
+    .icon-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;text-align:center}
+    .icon-item img{width:56px;height:56px;object-fit:contain;margin-bottom:6px}
+    .icon-item p{font-size:.8rem;margin:0;color:var(--fg)}
+    .icon-item a{text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center}
+
+    footer{padding:10px;text-align:center;font-size:12px;color:rgba(255,255,255,0.6)}
+
+    /* Buttons */
+    button.btn{
+      background:#222;
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      padding:6px 10px;
+      font-size:12px;
+      cursor:pointer;
+    }
+    button.btn:hover{background:#333}
+  </style>
+</head>
+<body>
+
+  <div class="desktop-block">
+    <div class="box">
+      <h2>This page is optimized for mobile</h2>
+      <p>Open this file on your phone or narrow your browser window to under 700px. This is a simple offline mobile player — place your video files in the <strong>videos/</strong> folder next to this HTML file.</p>
+    </div>
+  </div>
+
+  <div class="app" role="application">
+    <header>
+      <div class="brand">My Mobile Movies</div>
+    </header>
+
+    <main>
+      <div class="player-wrap" id="playerWrap">
+        <video id="player" controls playsinline webkit-playsinline preload="metadata" poster="videos/poster.jpg">
+          Your browser does not support HTML5 video.
+        </video>
+
+        <div class="controls">
+          <div>
+            <div class="title" id="title">—</div>
+            <div class="small" id="sub">Offline • Mobile</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="prevBtn" class="btn" title="Previous">Prev</button>
+            <button id="nextBtn" class="btn" title="Next">Next</button>
+            <button id="landscapeBtn" class="btn" title="Fullscreen">⛶</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal movie slider -->
+      <div class="movie-list" id="movieList"></div>
+
+      <!-- Page 2: Icon links -->
+      <div class="icon-grid">
+        <div class="icon-item"><a href="../rebandit.html"><img src="assets/icons/bandits.png"><p>BlayneNBandits</p></a></div>
+        <div class="icon-item"><a href="https://wikipedia.org"><img src="assets/icons/wikipedia.png"><p>wikipedia</p></a></div>
+        <div class="icon-item"><a href="https://example.com/ebooks"><img src="assets/icons/ebooks.png"><p>ebooks</p></a></div>
+        <div class="icon-item"><a href="https://news.google.com"><img src="assets/icons/news.png"><p>news</p></a></div>
+        <div class="icon-item"><a href="https://example.com/eatbulaga"><img src="assets/icons/eatbulaga.png"><p>eatbulaga</p></a></div>
+        <div class="icon-item"><a href="https://example.com/showtime"><img src="assets/icons/showtime.jpg"><p>showtime</p></a></div>
+      </div>
+    </main>
+
+    <footer>Place your MP4 files and thumbnails in a folder named <code>videos/</code> next to this file. Works offline.</footer>
+  </div>
+
+  <script>
+    const playlist = [
+      {src:'videos/movie1.mp4', title:'Movie 1', thumb:'videos/images/movie1.jpg'},
+      {src:'videos/movie2.mp4', title:'Movie 2', thumb:'videos/images/movie2.jpg'},
+      {src:'videos/movie3.mp4', title:'Chooks', thumb:'videos/images/movie3.jpg'},
+	  {src:'videos/movie4.mp4', title:'Movie 4', thumb:'videos/images/movie4.jpg'},
+      {src:'videos/movie5.mp4', title:'Movie 5', thumb:'videos/images/movie5.jpg'},
+      {src:'videos/movie6.mp4', title:'Movie6', thumb:'videos/images/movie6.jpg'},
+    ];
+
+    const player = document.getElementById('player');
+    const titleEl = document.getElementById('title');
+    const subEl = document.getElementById('sub');
+    const movieListEl = document.getElementById('movieList');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const landscapeBtn = document.getElementById('landscapeBtn');
+    const playerWrap = document.getElementById('playerWrap');
+
+    let index = 0;
+
+    function buildMovieList(){
+      movieListEl.innerHTML = '';
+      playlist.forEach((t,i)=>{
+        const item = document.createElement('div');
+        item.className = 'movie-item';
+        item.innerHTML = `<img src="${t.thumb}" alt="${t.title}"><span>${t.title}</span>`;
+        item.addEventListener('click', ()=> playIndex(i));
+        movieListEl.appendChild(item);
+      });
+    }
+
+    function loadIndex(i){
+      index = (i+playlist.length)%playlist.length;
+      const t = playlist[index];
+      player.src = t.src;
+      titleEl.textContent = t.title;
+    }
+
+    function playIndex(i){
+      loadIndex(i);
+      player.play().catch(()=>{});
+    }
+
+    function next(){ playIndex(index+1); }
+    function prev(){ playIndex(index-1); }
+
+    player.addEventListener('ended', ()=> setTimeout(next, 300));
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // Swipe gesture support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    playerWrap.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    playerWrap.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    });
+
+    function handleGesture(){
+      if (touchEndX < touchStartX - 50) { // swipe left
+        next();
+      }
+      if (touchEndX > touchStartX + 50) { // swipe right
+        prev();
+      }
+    }
+
+    // Fullscreen + landscape lock
+    landscapeBtn.addEventListener('click', async ()=>{
+      if (player.requestFullscreen) {
+        await player.requestFullscreen();
+      }
+      if (screen.orientation && screen.orientation.lock) {
+        try {
+          await screen.orientation.lock("landscape");
+        } catch(e) {
+          console.log("Orientation lock not supported:", e);
+        }
+      }
+    });
+
+    buildMovieList();
+    loadIndex(0);
+
+    player.addEventListener('error', ()=>{
+      subEl.textContent = 'Unable to load video. Make sure the files exist in videos/ and are named correctly.';
+    });
+  </script>
+</body>
+</html>
