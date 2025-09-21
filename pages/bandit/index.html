@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" />
+  <title>The Rusty Cutlasses — Pirate Band</title>
+  <style>
+    :root {
+      --bg1:#04182a; --bg2:#072b3a;
+      --accent:#f4c95d; --muted:#b7c1c7;
+      --glass: rgba(255,255,255,0.06);
+      font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial;
+    }
+    html,body{margin:0;padding:0;height:100%;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--accent);}
+    .desktop-block{display:none}
+    @media(min-width:720px){.app{display:none}.desktop-block{display:flex}}
+
+    .app{min-height:100vh;display:flex;flex-direction:column;padding:14px;box-sizing:border-box}
+    header{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo img{width:48px;height:48px;border-radius:8px;object-fit:cover}
+    .logo svg{width:48px;height:48px}
+    h1{margin:0;font-size:18px;color:var(--accent)}
+    p.lead{margin:0;font-size:12px;color:var(--muted)}
+
+    /* Hamburger */
+    .hamburger{width:34px;height:24px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
+    .hamburger span{height:4px;background:var(--accent);border-radius:2px}
+
+    /* Nav drawer */
+    .nav-drawer{position:fixed;top:0;left:-220px;width:200px;height:100%;background:#021219;box-shadow:2px 0 8px #000a;padding:20px;transition:left .3s;z-index:1000}
+    .nav-drawer.open{left:0}
+    .nav-drawer a{display:block;margin:14px 0;color:var(--accent);text-decoration:none;font-size:15px}
+    .overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#0006;display:none;z-index:900}
+    .overlay.show{display:block}
+
+    main{flex:1;margin-top:16px}
+    section{margin-bottom:24px;padding:14px;background:var(--glass);border-radius:12px}
+    section h2{margin:0 0 12px;font-size:16px;color:var(--accent)}
+    section p{margin:6px 0;font-size:14px;color:#fff}
+
+    /* Gigs list */
+    .gig{margin-bottom:10px;padding:10px;background:rgba(0,0,0,0.25);border-radius:8px}
+    .gig strong{color:var(--accent)}
+    .gig small{display:block;color:var(--muted);margin-top:2px}
+
+    /* Album */
+    .album{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .album-cover{width:90px;height:90px;border-radius:8px;background:#000;display:flex;align-items:center;justify-content:center}
+    .album-cover span{color:var(--muted);font-size:12px;text-align:center;padding:4px}
+    .album-info{flex:1;min-width:160px}
+    .album-info h3{margin:0 0 4px;font-size:15px;color:var(--accent)}
+    .album-info p{margin:0;font-size:13px;color:#fff}
+
+    /* Video player */
+    .video-section video{width:100%;border-radius:12px;background:#000}
+
+    footer{margin-top:auto;font-size:12px;color:var(--muted);text-align:center;padding:10px}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <!-- Try to load logo.png, fallback to SVG -->
+          <img src="assets/images/bandits.png" alt="Band Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <svg style="display:none" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" fill="#07131a" stroke="#f4c95d" stroke-width="2"/>
+            <circle cx="26" cy="28" r="4" fill="#f4c95d"/>
+            <circle cx="38" cy="28" r="4" fill="#f4c95d"/>
+            <path d="M20 44c8-4 16-4 24 0" stroke="#f4c95d" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Blayne and the bandits</h1>
+          <p class="lead">Gradio, Smile wifi</p>
+        </div>
+      </div>
+      <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    </header>
+
+    <!-- Content -->
+    <main>
+      <!-- Video Player Section -->
+      <section class="video-section">
+        <h2>🎬 Featured Video</h2>
+        <video controls poster="poster.jpg">
+          <source src="assets/videos/bandits.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p>Watch our live performance straight from the docks.</p>
+      </section>
+
+      <!-- Gigs -->
+      <section id="gigs">
+        <h2>Upcoming Gigs</h2>
+        <div class="gig">
+          <strong>Dec. 20, 2025 — Cantilan, Food Park</strong>
+          <small>Christmas Party., 8pm</small>
+        </div>
+        <div class="gig">
+          <strong>Dec. 31, 2025 — Cantilan, Food Park</strong>
+          <small>New Years Coundown Party, 6pm</small>
+        </div>
+        <div class="gig">
+          <strong>Oct 28 — Lantern Alley</strong>
+          <small>Old Town, 9pm</small>
+        </div>
+      </section>
+
+      <!-- Album -->
+      <section id="album">
+        <h2>Upcoming Album</h2>
+        <div class="album">
+          <div class="album-cover"><span>Album Art<br>Placeholder</span></div>
+          <div class="album-info">
+            <h3>“Songs of the Storm”</h3>
+            <p>A collection of rowdy sea shanties and heartfelt ballads — dropping this winter.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © The Rusty Cutlasses 2025 · Support Local Music
+    </footer>
+  </div>
+
+  <!-- Nav Drawer -->
+  <div class="nav-drawer" id="navDrawer">
+    <a href="../../index.html">🏴 Home</a>
+    <a href="#gigs">🎤 Gigs</a>
+    <a href="#album">💿 Album</a>
+    <a href="#contact">📬 Contact</a>
+  </div>
+  <div class="overlay" id="overlay" onclick="toggleNav()"></div>
+
+  <div class="desktop-block" style="min-height:100vh;align-items:center;justify-content:center;text-align:center;color:var(--muted)">
+    <p>Open this file on a mobile device to see the pirate band intro.</p>
+  </div>
+
+  <script>
+    function toggleNav(){
+      document.getElementById('navDrawer').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

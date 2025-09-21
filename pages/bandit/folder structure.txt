@@ -1,0 +1,18 @@
+band-website/
+│
+├── index.html           # main page (your dark themed code goes here)
+│
+├── assets/              # all media files
+│   ├── images/          # band images, logo, gallery
+│   │   ├── hero.jpg
+│   │   ├── gallery1.jpg
+│   │   ├── gallery2.jpg
+│   │   └── gallery3.jpg
+│   │
+│   ├── css/             # custom styles (if you add extra CSS)
+│   │   └── style.css
+│   │
+│   └── js/              # scripts (if you expand)
+│       └── main.js
+│
+└── README.md  
