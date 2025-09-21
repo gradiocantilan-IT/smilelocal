@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* 🔹 Background Video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* keeps it behind everything */
+  pointer-events: none;
+}
+
+/* 🔹 Banner */
+.banner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.banner-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 🔹 Local Video Player */
+.video-player {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.video-player video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  display: block;
+}
+
+/* 🔹 Search Section */
+.search-section {
+  text-align: center;
+  margin: 15px 10px;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+.logo span {
+  color: #ffcc00;
+}
+.search-box {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  margin-top: 10px;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+/* 🔹 Ticker */
+.ticker {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* 🔹 Swipeable Icon Grid */
+.icon-wrapper {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.icon-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.icon-pages {
+  display: flex;
+  flex-shrink: 0;
+  width: 200%;
+  transition: transform 0.3s ease-in-out;
+}
+.icon-grid {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  justify-items: center;
+}
+.icon-item {
+  text-align: center;
+}
+.icon-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  background: #111;
+}
+.icon-item p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* 🔹 Footer Carousel */
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 25px 0;
+  padding: 10px 0;
+  background: rgba(0,0,0,0.8);
+  border-top: 2px solid #222;
+}
+.carousel-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #000;
+  padding: 5px;
+}
