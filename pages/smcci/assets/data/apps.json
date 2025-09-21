@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Google Classroom",
+    "icon": "assets/icons/01.png",
+    "link": "https://classroom.google.com/"
+  },
+  {
+    "name": "Moodle",
+    "icon": "assets/icons/02.png",
+    "link": "https://moodle.org/"
+  },
+  {
+    "name": "Khan Academy",
+    "icon": "assets/icons/03.png",
+    "link": "https://www.khanacademy.org/"
+  },
+  {
+    "name": "Coursera",
+    "icon": "assets/icons/04.png",
+    "link": "https://www.coursera.org/"
+  },
+  {
+    "name": "Grammarly",
+    "icon": "assets/icons/05.png",
+    "link": "https://www.grammarly.com/"
+  },
+  {
+    "name": "Duolingo",
+    "icon": "assets/icons/06.png",
+    "link": "https://www.duolingo.com/"
+  },
+  {
+    "name": "Google Scholar",
+    "icon": "assets/icons/07.png",
+    "link": "https://scholar.google.com/"
+  },
+  {
+    "name": "Microsoft Teams",
+    "icon": "assets/icons/08.png",
+    "link": "https://teams.microsoft.com/"
+  },
+  {
+    "name": "Canva",
+    "icon": "assets/icons/09.png",
+    "link": "https://www.canva.com/education/"
+  },
+  {
+    "name": "Trello",
+    "icon": "assets/icons/10.png",
+    "link": "https://trello.com/"
+  },
+  {
+    "name": "GitHub",
+    "icon": "assets/icons/11.png",
+    "link": "https://github.com/"
+  },
+  {
+    "name": "Google Earth",
+    "icon": "assets/icons/12.png",
+    "link": "https://earth.google.com/"
+  }
+]
